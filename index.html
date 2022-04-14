@@ -13,37 +13,45 @@
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather Forecaster</title>
   </head>
+
   <body>
     <div class="container">
-      <header>
-        <h1>Weather Forecaster</h1>
-      </header>
+      <header class="row">
+        <div class="col-md-6">
+          <h1>Weather Forecaster</h1>
+        </div>
 
-      <main>
-        <section>
-          <form action="" aria-label="search form">
-            <label for="search-form-input">Enter a City</label>
-            <input type="text" name="" id="search-form-input" />
-            <button type="submit" class="btn btn-success">Search</button>
-          </form>
-
-          <h2>Lakewood, CO</h2>
-
-          <span>50° F</span>
-
-          <ul>
-            <li>Precipitation: 0%</li>
-            <li>Humidity: 14%</li>
-            <li>Wind: 13mph</li>
-          </ul>
-
+        <div class="col-md-6">
           <p>
             <time datetime="2022-04-12T14:54:39.929Z">April 12th</time>
           </p>
+        </div>
+      </header>
+
+      <main>
+        <section class="row">
+          <div class="col-md-6">
+            <h2>Lakewood, CO</h2>
+            <span>50° F</span>
+
+            <ul>
+              <li>Precipitation: 0%</li>
+              <li>Humidity: 14%</li>
+              <li>Wind: 13mph</li>
+            </ul>
+          </div>
+
+          <div class="col-md-6">
+            <form action="" aria-label="search form">
+              <label for="search-form-input">Enter a City</label>
+              <input type="text" name="" id="search-form-input" />
+              <button type="submit" class="btn btn-success">Search</button>
+            </form>
+          </div>
         </section>
 
         <section>
-          <h2>7 Day Forecast</h2>
+          <h2>7-Day Forecast</h2>
 
           <div class="row">
             <div class="col-2">
