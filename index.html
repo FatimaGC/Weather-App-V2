@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&family=Poppins:wght@100;400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Lobster+Two:ital@1&family=Poppins:wght@100;400;600&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="src/style.css" />
@@ -25,7 +25,7 @@
       <div class="wrapper">
         <header class="row justify-content-between">
           <div class="col-4">
-            <h1 class="title">Weather Forecaster</h1>
+            <h1 class="header-title">Weather Forecaster</h1>
           </div>
 
           <div class="col-4">
@@ -36,9 +36,43 @@
         </header>
 
         <main>
-          <section class="row">
+          <!-- <form action="" aria-label="search form">
+            <div class="row">
+              <div class="input-group mb-3">
+                <label for="search-form-input">Enter a City</label>
+                <input type="text" name="" id="search-form-input" />
+              </div>
+              <div class="">
+                <button type="submit" class="btn btn-success">Search</button>
+              </div>
+            </div>
+          </form> -->
+
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >Enter a City</span
+            >
+            <input
+              type="text"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              id="button-addon2"
+            >
+              Button
+            </button>
+          </div>
+
+          <section class="row current-weather">
             <div class="col-md-6">
-              <h2>Today's weather in <span>Lakewood, CO</span></h2>
+              <h2 class="current-weather_title">
+                Today's weather in
+                <span class="current-weather_title-location">Lakewood, CO</span>
+              </h2>
               <span>
                 <img
                   src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
@@ -55,13 +89,7 @@
               </ul>
             </div>
 
-            <div class="col-md-6">
-              <form action="" aria-label="search form">
-                <label for="search-form-input">Enter a City</label>
-                <input type="text" name="" id="search-form-input" />
-                <button type="submit" class="btn btn-success">Search</button>
-              </form>
-            </div>
+            <div class="col-md-6"></div>
           </section>
 
           <section>
@@ -155,6 +183,7 @@
         </small>
       </div>
     </div>
+
     <script src="src/app.js"></script>
   </body>
 </html>

@@ -6,11 +6,23 @@ body {
   border: 1px solid #dadde1;
   border-radius: 10px;
   margin: 50px auto;
-  max-width: 700px;
+  max-width: 60%;
   padding: 20px;
 }
 
-.title {
+.header-title {
   font-family: "Lobster Two", cursive;
   font-size: 25px;
+}
+
+.current-weather {
+  margin: 50px 0;
+}
+
+.current-weather_title {
+  font-size: 18px;
+}
+
+.current-weather_title-location {
+  font-weight: bold;
 }
