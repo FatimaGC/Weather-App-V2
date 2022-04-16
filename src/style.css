@@ -19,17 +19,44 @@ form {
   font-size: 25px;
 }
 
-.current-weather {
+.current-weather_container {
   background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
   border-radius: 5px;
   margin: 50px 0;
-  padding: 20px;
+  padding: 40px;
 }
 
 .current-weather_title {
   font-size: 25px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .current-weather_title-location {
   font-weight: bold;
+}
+
+.current-weather_image {
+  height: 140px;
+  width: 140px;
+}
+
+.current-weather_temperature-list {
+  list-style: none;
+}
+.current-weather_temperature-list li:first-child {
+  color: white;
+  font-size: 40px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+
+.current-weather_temperature-list span {
+  font-size: 20px;
+  position: relative;
+  top: -12px;
+}
+
+.current-weather_list {
+  list-style: none;
 }

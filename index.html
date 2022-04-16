@@ -68,28 +68,34 @@
             </div>
           </form>
 
-          <section class="current-weather">
-            <div class="">
+          <section class="current-weather_container row align-items-center">
+            <!-- <div class=""> -->
               <h2 class="current-weather_title">
                 Today's weather in
                 <span class="current-weather_title-location">Lakewood, CO</span>
               </h2>
-              <span>
+
+              <div class="col">
                 <img
                   src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-                  alt="Sunny"
+                  alt="Sunny" class="current-weather_image"
                 />
+               </div>
+                <!-- <span> 50° C | F</span> -->
+              <div class="col">
+                <ul class="current-weather_temperature-list">
+                  <li>50° <span>C | F</span></li>
+                  <li>Sunny</li>
+                </ul>
+              </div>
 
-                50° F</span
-              >
-
-              <ul>
-                <li>Sunny</li>
+              <div class="col">
+              <ul class="current-weather_list">
                 <li>Precipitation: 0%</li>
                 <li>Humidity: 14%</li>
                 <li>Wind: 13mph</li>
               </ul>
-            </div>
+            <!-- </div> -->
           </section>
 
           <section>
