@@ -19,6 +19,8 @@ form {
   font-size: 25px;
 }
 
+/* Current Weather Styles */
+
 .current-weather_container {
   background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
   border-radius: 5px;
@@ -55,4 +57,19 @@ form {
   font-size: 20px;
   position: relative;
   top: -20px;
+}
+
+/* Weekly Forecast styles */
+
+.weekly-forecast_container {
+  margin: 40px 0;
+}
+.weekly-forecast_title {
+  color: gray;
+  font-size: 25px;
+  margin-bottom: 40px;
+}
+
+.weekly-forecast_container h3 {
+  font-size: 20px;
 }

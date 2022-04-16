@@ -17,6 +17,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="src/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Weather Forecaster</title>
   </head>
 
@@ -30,7 +31,7 @@
 
           <div class="col-4">
             <p>
-              <time datetime="2022-04-12T14:54:39.929Z">April 12th</time>
+              <time datetime="2022-04-12T14:54:39.929Z" id="date" >April 12th</time>
             </p>
           </div>
         </header>
@@ -47,7 +48,7 @@
               </div>
             </div>
           </form> -->
-          <form action="" aria-label="search form">
+          <form action="" id="search-form" aria-label="search form">
             <div class="input-group mb-3">
               <span class="input-group-text" id="inputGroup-sizing-default"
                 >Enter a City</span
@@ -57,13 +58,15 @@
                 class="form-control"
                 aria-label="Sizing example input"
                 aria-describedby="inputGroup-sizing-default"
+                id="search-text-input"
               />
               <button
                 class="btn btn-outline-secondary"
-                type="button"
+                type="submit"
                 id="button-addon2"
+                value="Search"
               >
-                Button
+                Search
               </button>
             </div>
           </form>
@@ -84,7 +87,7 @@
                 <!-- <span> 50° C | F</span> -->
               <div class="col">
                 <ul class="current-weather_temperature-list">
-                  <li class="current-weather_temperature-list_degrees">50° <span>C | F</span></li>
+                  <li class="current-weather_temperature-list_degrees" id="current-weather">50° <span>C | F</span></li>
                   <li>Sunny</li>
                 </ul>
               </div>
@@ -98,8 +101,10 @@
             <!-- </div> -->
           </section>
 
-          <section>
-            <h2>7-Day Forecast</h2>
+          <section class="weekly-forecast_container ">
+            <h2 class="weekly-forecast_title">7-Day Forecast</h2>
+
+            <!-- How do I center all the columns below? -->
 
             <div class="row">
               <div class="col">
