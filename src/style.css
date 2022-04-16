@@ -59,6 +59,10 @@ form {
   top: -20px;
 }
 
+.current-weather_temperature-list_description {
+  text-transform: capitalize;
+}
+
 /* Weekly Forecast styles */
 
 .weekly-forecast_container {

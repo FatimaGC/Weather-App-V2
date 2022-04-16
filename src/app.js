@@ -54,12 +54,16 @@ function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
 
   let currentWeather = document.querySelector("#current-weather");
-  currentWeather.innerHTML = `${temperature}°F.`;
+  currentWeather.innerHTML = `${temperature}°`;
   let city = response.data.name;
   let currentWeatherTitleLocation = document.querySelector(
     ".current-weather_title-location"
   );
   currentWeatherTitleLocation.innerHTML = city;
+  let weatherDescription = document.querySelector(
+    ".current-weather_temperature-list_description"
+  );
+  weatherDescription.innerHTML = response.data.weather[0].description;
 }
 
 function fetchTemperature(queryParameters) {
