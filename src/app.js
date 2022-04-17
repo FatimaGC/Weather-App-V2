@@ -64,6 +64,12 @@ function showTemperature(response) {
     ".current-weather_temperature-list_description"
   );
   weatherDescription.innerHTML = response.data.weather[0].description;
+
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
 }
 
 function fetchTemperature(queryParameters) {
