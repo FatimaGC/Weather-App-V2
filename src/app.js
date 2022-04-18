@@ -64,7 +64,7 @@ function showTemperature(response) {
   );
   currentWeatherTitleLocation.innerHTML = city;
   let weatherDescription = document.querySelector(
-    ".current-weather_temperature-list_description"
+    ".current-weather_description"
   );
   weatherDescription.innerHTML = response.data.weather[0].description;
 
@@ -75,6 +75,9 @@ function showTemperature(response) {
   );
 
   icon.setAttribute("alt", response.data.weather[0].description);
+
+  let windSpeed = document.querySelector("#wind");
+  windSpeed.innerHTML = response.data.wind.speed;
 }
 
 function fetchTemperature(queryParameters) {
