@@ -29,7 +29,11 @@ const dateDisplay = document.querySelector("#date");
 
 dateDisplay.innerHTML = updateDate(currentDate);
 
-// Updates current-weather_title when a city is entered in the search bar
+// Event listener for search form. Runs the search function when the search button is clicked.
+const searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", search);
+
+// Prevents page refresh, stores value entered into the search bar, runs getCityTemperature function.
 function search(event) {
   event.preventDefault();
   const searchInput = document.querySelector("#search-text-input");
@@ -37,8 +41,88 @@ function search(event) {
 
   getCityTemperature(city);
 }
-const searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+
+//
+function getCityTemperature(city) {
+  const queryParameters = `q=${city}`;
+
+  fetchTemperature(queryParameters);
+}
+
+//Stores API information and runs showTemperature function for the city searched.
+function fetchTemperature(queryParameters) {
+  const apiKey = "0a4dc3c696be7291e8d469a7dbee552f";
+  let units = "metric";
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=${units}&${queryParameters}`;
+  axios.get(apiUrl).then(showTemperature);
+}
+
+// Code for updating the current-weather section with real-time temperature, weather icon, and wind speed information for city searched.
+
+// Global variable to store current celsius temperature.
+let celsiusTemperature = null;
+
+//
+function showTemperature(response) {
+  celsiusTemperature = response.data.main.temp;
+
+  let temperature = Math.round(celsiusTemperature);
+
+  let currentWeather = document.querySelector("#current-weather");
+  currentWeather.innerHTML = `${temperature}°`;
+
+  let city = response.data.name;
+
+  // Displays name of city searched
+  let currentWeatherTitleLocation = document.querySelector(
+    ".current-weather_title-location"
+  );
+  currentWeatherTitleLocation.innerHTML = city;
+
+  // Displays real-time weather description for city searched.
+  let weatherDescription = document.querySelector(
+    ".current-weather_description"
+  );
+  weatherDescription.innerHTML = response.data.weather[0].description;
+
+  // Displays real-time weather icon for city searched and updates the alt attribute to match.
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+
+  icon.setAttribute("alt", response.data.weather[0].description);
+
+  // Displays real-time wind speed for city searched.
+  let windSpeed = document.querySelector("#wind");
+  windSpeed.innerHTML = response.data.wind.speed;
+}
+
+// Code for converting and displaying temperature in both Celsius and Fahrenheit.
+
+// Event listener for clicking on the F unit link runs showFahrenheitTemperature function.
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+// Converts temperature from Celsius to Fahrenheit and displays Fahrenheit temperature instead.
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#current-weather");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperature.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+// Event listener for clicking on the C unit link, runs showCelsiusTemperature function.
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
+
+// Displays Celsius temperature instead of Fahrenheit.
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#current-weather");
+  temperature.innerHTML = Math.round(celsiusTemperature);
+}
 
 // function searchCurrentLocation(event) {
 //   event.preventDefault();
@@ -48,50 +132,6 @@ searchForm.addEventListener("submit", search);
 // const currentLocationForm = document.querySelector("#current-location-form");
 // currentLocationForm.addEventListener("submit", searchCurrentLocation);
 
-// Allows user to search for a city then updates the current-weather_title and the current temp for that city
-function showTemperature(response) {
-  console.log(response);
-
-  celsiusTemperature = response.data.main.temp;
-
-  let temperature = Math.round(celsiusTemperature);
-
-  let currentWeather = document.querySelector("#current-weather");
-  currentWeather.innerHTML = `${temperature}°`;
-  let city = response.data.name;
-  let currentWeatherTitleLocation = document.querySelector(
-    ".current-weather_title-location"
-  );
-  currentWeatherTitleLocation.innerHTML = city;
-  let weatherDescription = document.querySelector(
-    ".current-weather_description"
-  );
-  weatherDescription.innerHTML = response.data.weather[0].description;
-
-  let icon = document.querySelector("#icon");
-  icon.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
-
-  icon.setAttribute("alt", response.data.weather[0].description);
-
-  let windSpeed = document.querySelector("#wind");
-  windSpeed.innerHTML = response.data.wind.speed;
-}
-
-function fetchTemperature(queryParameters) {
-  const apiKey = "0a4dc3c696be7291e8d469a7dbee552f";
-  let units = "metric";
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?appid=${apiKey}&units=${units}&${queryParameters}`;
-  axios.get(apiUrl).then(showTemperature);
-}
-function getCityTemperature(city) {
-  const queryParameters = `q=${city}`;
-
-  fetchTemperature(queryParameters);
-}
-
 // function getCurrentLocationTemperature(position) {
 //   let latitude = position.coords.latitude;
 //   let longitude = position.coords.longitude;
@@ -100,24 +140,3 @@ function getCityTemperature(city) {
 
 //   fetchTemperature(queryParameters);
 // }
-
-let celsiusTemperature = null;
-
-function showFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#current-weather");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperature.innerHTML = Math.round(fahrenheitTemperature);
-}
-
-function showCelsiusTemperature(event) {
-  event.preventDefault();
-  let temperature = document.querySelector("#current-weather");
-  temperature.innerHTML = Math.round(celsiusTemperature);
-}
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemperature);
