@@ -51,7 +51,10 @@ searchForm.addEventListener("submit", search);
 // Allows user to search for a city then updates the current-weather_title and the current temp for that city
 function showTemperature(response) {
   console.log(response);
-  let temperature = Math.round(response.data.main.temp);
+
+  celsiusTemperature = response.data.main.temp;
+
+  let temperature = Math.round(celsiusTemperature);
 
   let currentWeather = document.querySelector("#current-weather");
   currentWeather.innerHTML = `${temperature}°`;
@@ -94,3 +97,15 @@ function getCityTemperature(city) {
 
 //   fetchTemperature(queryParameters);
 // }
+
+let celsiusTemperature = null;
+
+function showFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#current-weather");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperature.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);

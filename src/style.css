@@ -43,24 +43,28 @@ form {
   width: 140px;
 }
 
-.current-weather_temperature-list {
-  list-style: none;
-}
-.current-weather_temperature-list_degrees {
+.current-weather_degrees {
   color: white;
   font-size: 50px;
   font-weight: bolder;
   margin-bottom: 10px;
 }
 
-.current-weather_temperature-list span {
+.current-weather_units {
+  color: white;
   font-size: 20px;
   position: relative;
-  top: -20px;
+  bottom: 72px;
+  left: 100px;
+  /* top: 10px; */
 }
 
-.current-weather_temperature-list_description {
+.current-weather_description {
   text-transform: capitalize;
+}
+
+.current-weather_list {
+  list-style: none;
 }
 
 /* Weekly Forecast styles */
