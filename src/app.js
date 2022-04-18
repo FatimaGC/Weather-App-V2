@@ -110,5 +110,14 @@ function showFahrenheitTemperature(event) {
   temperature.innerHTML = Math.round(fahrenheitTemperature);
 }
 
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperature = document.querySelector("#current-weather");
+  temperature.innerHTML = Math.round(celsiusTemperature);
+}
+
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
