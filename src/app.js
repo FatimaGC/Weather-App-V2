@@ -97,6 +97,58 @@ function showTemperature(response) {
   // Displays real-time wind speed for city searched.
   let windSpeed = document.querySelector("#wind");
   windSpeed.innerHTML = response.data.wind.speed;
+
+  getForecast(response.data.coord);
+}
+
+// Code for weekly forecast
+
+function getForecast(coordinates) {
+  const apiKey = "0a4dc3c696be7291e8d469a7dbee552f";
+  const apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+// Injects HTML - creates a new column with the forecast for each day of the week.
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  const forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  // let days = ["Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun"];
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+        <div class="col">
+           <h3>${formatDay(forecastDay.dt)}</h3>
+            <span class="weather-icon">
+            <img src="http://openweathermap.org/img/wn/${
+              forecastDay.weather[0].icon
+            }@2x.png" alt=""/>
+            </span>
+            <p>${Math.round(
+              forecastDay.temp.max
+            )}° | <span class="weekly-forecast_min_degrees">${Math.round(
+          forecastDay.temp.min
+        )}°</span></p>
+        </div>
+  `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
 }
 
 // Code for converting and displaying temperature in both Celsius and Fahrenheit.
@@ -140,29 +192,3 @@ function showCelsiusTemperature(event) {
 
 //   fetchTemperature(queryParameters);
 // }
-
-// Code for weekly forecast
-function displayForecast() {
-  const forecastElement = document.querySelector("#forecast");
-
-  let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-        <div class="col">
-           <h3>${day}</h3>
-            <span class="weather-icon">
-            <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="Partly cloudy"/>
-            </span>
-            <p>60° | <span class="weekly-forecast_min_degrees">33°</span></p>
-        </div>
-  `;
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
-
-displayForecast();
