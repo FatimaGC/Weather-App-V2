@@ -81,3 +81,7 @@ form {
 .weekly-forecast_container h3 {
   font-size: 20px;
 }
+
+.weekly-forecast_min_degrees {
+  opacity: 0.5;
+}

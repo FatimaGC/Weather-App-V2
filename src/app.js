@@ -140,3 +140,29 @@ function showCelsiusTemperature(event) {
 
 //   fetchTemperature(queryParameters);
 // }
+
+// Code for weekly forecast
+function displayForecast() {
+  const forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tues", "Weds", "Thurs", "Fri", "Sat", "Sun"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+        <div class="col">
+           <h3>${day}</h3>
+            <span class="weather-icon">
+            <img src="https://ssl.gstatic.com/onebox/weather/48/partly_cloudy.png" alt="Partly cloudy"/>
+            </span>
+            <p>60° | <span class="weekly-forecast_min_degrees">33°</span></p>
+        </div>
+  `;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
